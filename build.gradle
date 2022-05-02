@@ -1,0 +1,35 @@
+plugins {
+    id 'org.springframework.boot' apply false
+    id 'io.spring.dependency-management' apply false
+}
+
+subprojects.forEach { proj ->
+    proj.apply plugin: 'java'
+    proj.apply plugin: 'org.springframework.boot'
+ 	proj.apply plugin: 'io.spring.dependency-management'
+
+    proj.group = 'com.example'
+    proj.version = '0.0.1-SNAPSHOT'
+
+    proj.repositories {
+        mavenCentral()
+    }
+
+    proj.dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    proj.tasks.named('test') {
+        useJUnitPlatform()
+    }
+
+    proj.extensions.configure(JavaPluginExtension) {
+        javaPluginExtension ->
+            javaPluginExtension.toolchain {
+                toolchain ->
+                    toolchain.languageVersion = JavaLanguageVersion.of(16)
+                    toolchain.vendor = JvmVendorSpec.ADOPTOPENJDK
+            }
+    }
+}
