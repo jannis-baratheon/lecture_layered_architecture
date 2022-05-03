@@ -45,9 +45,9 @@ class BookServiceIntegrationTest {
 
     @Test
     void getsBook() {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setTitle("The Master and Margarita");
-        bookEntity.setAuthor("Mikhail Bulgakov");
+        BookEntity bookEntity = new BookEntity(
+                "The Master and Margarita",
+                "Mikhail Bulgakov");
         bookRepository.saveAndFlush(bookEntity);
 
         Book actualBook = sut.getBook(bookEntity.getId());
@@ -60,12 +60,12 @@ class BookServiceIntegrationTest {
 
     @Test
     void findsBookByAuthor() {
-        BookEntity book1 = new BookEntity();
-        book1.setTitle("The Master and Margarita");
-        book1.setAuthor("Mikhail Bulgakov");
-        BookEntity book2 = new BookEntity();
-        book1.setTitle("Refactoring");
-        book1.setAuthor("Martin Fowler");
+        BookEntity book1 = new BookEntity(
+                "The Master and Margarita",
+                "Mikhail Bulgakov");
+        BookEntity book2 = new BookEntity(
+                "Refactoring",
+                "Martin Fowler");
         bookRepository.saveAllAndFlush(Arrays.asList(book1, book2));
 
         Collection<Book> actualBook = sut.findBooksByAuthor("%Fow%");

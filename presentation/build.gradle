@@ -1,0 +1,10 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation project(':service')
+    implementation "org.mapstruct:mapstruct:${getProperty('versions.mapstruct')}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${getProperty('versions.mapstruct')}"
+
+    testImplementation project(':persistence')
+    testRuntimeOnly 'com.h2database:h2'
+}
