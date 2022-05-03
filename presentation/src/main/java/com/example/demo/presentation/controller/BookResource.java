@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@RestController
+@ResponseBody
 @RequestMapping("/api")
 public class BookResource {
     private final BookService bookService;
@@ -23,7 +23,6 @@ public class BookResource {
     }
 
     @PostMapping("/books")
-    @ResponseBody
     public ResponseEntity<Long> createBook(@RequestBody BookDTO bookDTO) throws URISyntaxException {
         Book book = bookDTOMapper.toServiceObject(bookDTO);
 
@@ -35,7 +34,6 @@ public class BookResource {
     }
 
     @GetMapping("/books/{id}")
-    @ResponseBody
     public BookDTO getBook(@PathVariable long id) {
         Book book = bookService.getBook(id);
 
