@@ -16,7 +16,7 @@ subprojects.forEach { proj ->
     }
 
     proj.dependencies {
-        implementation 'com.google.guava:guava:31.1-jre'
+        implementation "com.google.guava:guava:${getProperty('versions.guava')}"
 
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
@@ -30,7 +30,6 @@ subprojects.forEach { proj ->
             javaPluginExtension.toolchain {
                 toolchain ->
                     toolchain.languageVersion = JavaLanguageVersion.of(16)
-                    toolchain.vendor = JvmVendorSpec.ADOPTOPENJDK
             }
     }
 }

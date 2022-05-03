@@ -1,0 +1,8 @@
+dependencies {
+    implementation project(':persistence')
+    implementation "org.mapstruct:mapstruct:${getProperty('versions.mapstruct')}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${getProperty('versions.mapstruct')}"
+
+    testRuntimeOnly 'com.h2database:h2'
+}
