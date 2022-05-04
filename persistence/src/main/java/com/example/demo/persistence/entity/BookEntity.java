@@ -17,10 +17,17 @@ public class BookEntity {
     public BookEntity() {
     }
 
-    public BookEntity(String title,
+    public BookEntity(Long id,
+                      String title,
                       String author) {
+        this.id = id;
         this.title = title;
         this.author = author;
+    }
+
+    public BookEntity(String title,
+                      String author) {
+        this(null, title, author);
     }
 
     public Long getId() {

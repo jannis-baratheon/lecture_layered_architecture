@@ -19,10 +19,22 @@ subprojects.forEach { proj ->
         implementation "com.google.guava:guava:${getProperty('versions.guava')}"
 
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation "org.assertj:assertj-core:${getProperty('versions.assertj')}"
+        testImplementation "org.mockito:mockito-core:${getProperty('versions.mockito')}"
+        // Mockito needs it
+        testRuntimeOnly "net.bytebuddy:byte-buddy:${getProperty('versions.bytebuddy')}"
     }
 
-    proj.tasks.named('test') {
-        useJUnitPlatform()
+    proj.tasks.withType(Test).configureEach {
+        it.useJUnitPlatform()
+    }
+
+    proj.tasks.withType(JavaCompile).configureEach {
+        it.options.with {
+            it.encoding = 'UTF-8'
+            it.compilerArgs << '-Xlint'
+            it.deprecation = true
+        }
     }
 
     proj.extensions.configure(JavaPluginExtension) {
