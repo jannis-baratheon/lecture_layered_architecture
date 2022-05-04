@@ -2,7 +2,7 @@ package com.example.demo.service.implementation;
 
 import com.example.demo.persistence.entity.BookEntity;
 import com.example.demo.persistence.repository.BookRepository;
-import com.example.demo.service.api.BookService;
+import com.example.demo.service.api.Bookstore;
 import com.example.demo.service.mapper.BookMapper;
 import com.example.demo.service.model.Book;
 import org.springframework.data.jpa.domain.Specification;
@@ -10,12 +10,12 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.Collection;
 import java.util.List;
 
-public class DefaultBookService implements BookService {
+public class DefaultBookstore implements Bookstore {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public DefaultBookService(BookRepository bookRepository,
-                              BookMapper bookMapper) {
+    public DefaultBookstore(BookRepository bookRepository,
+                            BookMapper bookMapper) {
         this.bookRepository = bookRepository;
         this.bookMapper = bookMapper;
     }

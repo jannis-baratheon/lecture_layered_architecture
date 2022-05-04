@@ -1,6 +1,6 @@
 package com.example.demo.presentation.controller;
 
-import com.example.demo.service.api.BookService;
+import com.example.demo.service.api.Bookstore;
 import com.example.demo.service.model.Book;
 import com.example.demo.presentation.mapper.BookDTOMapper;
 import com.example.demo.presentation.model.BookDTO;
@@ -13,12 +13,12 @@ import java.net.URISyntaxException;
 @ResponseBody
 @RequestMapping("/api")
 public class BookResource {
-    private final BookService bookService;
+    private final Bookstore bookstore;
     private final BookDTOMapper bookDTOMapper;
 
-    public BookResource(BookService bookService,
+    public BookResource(Bookstore bookstore,
                         BookDTOMapper bookDTOMapper) {
-        this.bookService = bookService;
+        this.bookstore = bookstore;
         this.bookDTOMapper = bookDTOMapper;
     }
 
@@ -26,7 +26,7 @@ public class BookResource {
     public ResponseEntity<Long> createBook(@RequestBody BookDTO bookDTO) throws URISyntaxException {
         Book book = bookDTOMapper.toServiceObject(bookDTO);
 
-        long id = bookService.addBook(book);
+        long id = bookstore.addBook(book);
 
         return ResponseEntity
                 .created(new URI("/api/books/" + id))
@@ -35,7 +35,7 @@ public class BookResource {
 
     @GetMapping("/books/{id}")
     public BookDTO getBook(@PathVariable long id) {
-        Book book = bookService.getBook(id);
+        Book book = bookstore.getBook(id);
 
         return bookDTOMapper.fromServiceObject(book);
     }

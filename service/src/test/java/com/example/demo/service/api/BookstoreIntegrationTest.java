@@ -25,19 +25,25 @@ import static org.assertj.core.api.Assertions.tuple;
         "spring.datasource.url=jdbc:h2:file:./build/testdb/testdb",
         "spring.jpa.hibernate.ddl-auto=create",
 })
-class BookServiceIntegrationTest {
+class BookstoreIntegrationTest {
     @Autowired
-    BookService sut;
+    Bookstore sut;
 
     @Autowired
     BookRepository bookRepository;
 
     @Test
     void addsBook() {
+        // given
+        // setup
         Book expectedBook = new Book("Title", "Some Author");
 
+        // when
+        // act
         long id = sut.addBook(expectedBook);
 
+        // then
+        // aseert
         assertThat(bookRepository.findAll())
                 .extracting(BookEntity::getId, BookEntity::getTitle, BookEntity::getAuthor)
                 .containsExactly(tuple(id, "Title", "Some Author"));
