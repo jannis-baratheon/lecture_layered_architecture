@@ -6,7 +6,7 @@ plugins {
 subprojects.forEach { proj ->
     proj.apply plugin: 'java'
     proj.apply plugin: 'org.springframework.boot'
- 	proj.apply plugin: 'io.spring.dependency-management'
+    proj.apply plugin: 'io.spring.dependency-management'
 
     proj.group = 'com.example'
     proj.version = '0.0.1-SNAPSHOT'

@@ -6,6 +6,8 @@ import java.util.Collection;
 
 public interface Bookstore {
     long addBook(Book book);
+
     Book getBook(long id);
+
     Collection<Book> findBooksByAuthor(String author);
 }

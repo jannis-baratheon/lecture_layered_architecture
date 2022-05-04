@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @Import(ServiceConfiguration.class)
-public class PresentationConfiguration  {
+public class PresentationConfiguration {
     @Bean
     BookDTOMapper bookDTOMapper() {
         return Mappers.getMapper(BookDTOMapper.class);

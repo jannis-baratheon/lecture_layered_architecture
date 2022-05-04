@@ -12,11 +12,10 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.example.demo.service.test.BookstoreTestFixtures.*;
+import static com.example.demo.service.test.BookstoreTestFixtures.SOME_BOOKS_CSV_DATASET;
+import static com.example.demo.service.test.BookstoreTestFixtures.SOME_TITLES_WITH_AUTHORS;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
 
 class BookMapperTest {
     private BookMapper sut;
